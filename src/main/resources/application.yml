@@ -1,2 +1,3 @@
 server.port: 8761
 spring.application.name: bug-wars-eureka
+java.runtime.version: 11
