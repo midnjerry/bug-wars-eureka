@@ -1,0 +1,1 @@
+web: java -jar target/bug-wars-eureka.jar
