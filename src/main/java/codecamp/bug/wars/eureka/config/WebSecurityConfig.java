@@ -8,28 +8,31 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${eureka.user.password}")
+    @Value("${eureka.user:}")
+    private String user;
+
+    @Value("${eureka.user.password:}")
     private String password;
 
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-        .passwordEncoder(NoOpPasswordEncoder.getInstance())
-        .withUser("user").password(password)
-        .authorities("ADMIN");
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .withUser(user).password(password)
+                .authorities("ADMIN");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf()
+                .csrf()
                 .disable()
-            .authorizeRequests()
-              .anyRequest().authenticated()
-              .and()
-              .httpBasic();
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic();
     }
 }

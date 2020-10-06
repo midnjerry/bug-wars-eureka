@@ -1,10 +1,25 @@
 server.port: 8761
 spring.application.name: bug-wars-eureka
 eureka:
-  instance:
-    hostname: localhost
+  user: user
   client:
     fetch-registry: false
     register-with-eureka: false
+
+---
+spring.profiles: local, default
+eureka:
+  user.password: password
+  instance:
+    hostname: localhost
     service-url:
-      defaultZone: http://user:${eureka.user.password}@${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://${eureka.user}:${eureka.user.password}@${eureka.instance.hostname}:${server.port}/eureka
+
+---
+spring.profiles: stage
+eureka:
+  user.password: <SET_IN_HEROKU_CONFIG>
+  instance:
+    hostname: localhost
+    service-url:
+      defaultZone: http://${eureka.user}:${eureka.user.password}@${eureka.instance.hostname}:${server.port}/eureka
