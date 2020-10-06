@@ -1,1 +1,0 @@
-web: java -jar build/libs/bug-wars-eureka-0.0.1-SNAPSHOT.jar
