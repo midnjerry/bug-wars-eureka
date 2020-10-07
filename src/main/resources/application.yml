@@ -25,7 +25,7 @@ eureka:
 # even if you overwrite it.  Advanced Git commands are needed to erase it
 # from history, which runs the risk of data loss! DON'T COMMIT PASSWORDS!
 ---
-spring.profiles: stage
+spring.profiles: stage, prod
 eureka:
   user.password: <SET_IN_HEROKU_CONFIG>
   instance:
