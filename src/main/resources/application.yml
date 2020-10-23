@@ -1,7 +1,6 @@
 server.port: 8761
 spring.application.name: bug-wars-eureka
 eureka:
-  user: user
   client:
     fetch-registry: false
     register-with-eureka: false
@@ -9,11 +8,11 @@ eureka:
 ---
 spring.profiles: local, default
 eureka:
-  user.password: password
+  password: password
   instance:
     hostname: localhost
     service-url:
-      defaultZone: http://${eureka.user}:${eureka.user.password}@${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://user:${eureka.password}@${eureka.instance.hostname}:${server.port}/eureka
 
 # Set SPRING_PROFILES_ACTIVE to stage as a HEROKU CONFIG VARIABLE
 # Heroku will then use the profile below.
@@ -25,10 +24,10 @@ eureka:
 # even if you overwrite it.  Advanced Git commands are needed to erase it
 # from history, which runs the risk of data loss! DON'T COMMIT PASSWORDS!
 ---
-spring.profiles: stage, prod
+spring.profiles: cloud
 eureka:
   user.password: <SET_IN_HEROKU_CONFIG>
   instance:
     hostname: localhost
     service-url:
-      defaultZone: http://${eureka.user}:${eureka.user.password}@${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://user:${eureka.password}@${eureka.instance.hostname}/eureka

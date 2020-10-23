@@ -13,7 +13,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${eureka.user:}")
     private String user;
 
-    @Value("${eureka.user.password:}")
+    @Value("${eureka.password:}")
     private String password;
 
 
