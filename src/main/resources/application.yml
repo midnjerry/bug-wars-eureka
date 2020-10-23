@@ -1,6 +1,7 @@
 server.port: 8761
 spring.application.name: bug-wars-eureka
 eureka:
+  user: user
   client:
     fetch-registry: false
     register-with-eureka: false
@@ -12,7 +13,7 @@ eureka:
   instance:
     hostname: localhost
     service-url:
-      defaultZone: http://user:${eureka.password}@${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://${eureka.user}:${eureka.password}@${eureka.instance.hostname}:${server.port}/eureka
 
 # Set SPRING_PROFILES_ACTIVE to stage as a HEROKU CONFIG VARIABLE
 # Heroku will then use the profile below.
@@ -28,6 +29,6 @@ spring.profiles: cloud
 eureka:
   user.password: <SET_IN_HEROKU_CONFIG>
   instance:
-    hostname: localhost
+    hostname: bug-wars-eureka.herokuapp.com
     service-url:
-      defaultZone: http://user:${eureka.password}@${eureka.instance.hostname}/eureka
+      defaultZone: http://${eureka.user}:${eureka.password}@${eureka.instance.hostname}/eureka
