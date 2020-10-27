@@ -1,0 +1,2 @@
+# Gets added before anything else
+spring.application.name: bug-wars-eureka
