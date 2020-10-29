@@ -1,6 +1,9 @@
 # Heroku configuration
 # From: https://github.com/kissaten/heroku-eureka-server-demo
 
+# Stack Overflow:
+# https://stackoverflow.com/questions/60414630/problem-with-unknown-ports-on-spring-eureka-client-registration
+
 server.port: ${PORT:8761}
 
 eureka:
