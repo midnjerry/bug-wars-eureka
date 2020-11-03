@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     #Get a new instance of a computer / virtual machine
-    runs-on: ubuntu-Latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,21 +18,23 @@ jobs:
       - name: Cache local Maven repository
         uses: actions/cache@v2
         with:
-              path: ~/.m2
-              key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-              restore-keys: ${{ runner.os }}-m2
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
 
-       - name: Login to Heroku
-         uses: akhileshns/heroku-deploy@v3.5.7 # This is the action
-         with:
-           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-           heroku_app_name: "bug-wars-eureka"
-           heroku_email: "jerry.codecamp@gmail.com"
-           justlogin: true
+      - name: Login to Heroku
+        uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "bug-wars-eureka"
+          heroku_email: "jerry.codecamp@gmail.com"
+          justlogin: true
 
-       - name: Deploy to Heroku using Heroku CLI
-         run: |
-           heroku plugins:install java
-           heroku deploy:jar target/bug-wars-ui-0.0.1-SNAPSHOT.jar --app bug-wars-eureka
+      - name: Deploy to Heroku using Heroku CLI
+        run: |
+          heroku plugins:install java
+          heroku buildpacks:clear --app bug-wars-eureka
+          heroku deploy:jar target/bug-wars-eureka-0.0.1-SNAPSHOT.jar --app bug-wars-eureka
+
 
 
