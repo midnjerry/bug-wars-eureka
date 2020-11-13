@@ -27,11 +27,6 @@ class BugWarsEurekaApplicationTests {
     }
 
     @Test
-    public void pingerService_pingsOtherServicesOnStartup() {
-        Mockito.verify(httpClient, times(3)).sendAsync(any(), any());
-    }
-
-    @Test
     void configLoadsUrlsForPingerService() {
         assertEquals(Arrays.asList("http://abc.com", "http://def.com", "http://ghi.com"), pingerService.getEndpoints());
     }
