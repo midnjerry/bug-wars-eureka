@@ -14,3 +14,9 @@ eureka:
     register-with-eureka: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
+bugwars:
+  endpoints:
+    - "http://bug-wars-ai-crud.herokuapp.com"
+    - "http://bug-wars-game-engine.herokuapp.com"
+    - "http://bug-wars-api-gateway.herokuapp.com"
